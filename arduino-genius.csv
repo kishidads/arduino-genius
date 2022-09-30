@@ -1,0 +1,12 @@
+﻿Nome,Quantidade,Componente
+"U1",1," Arduino Uno R3"
+"RR Red, RR Green, RR Blue, RR Yellow",4,"220 Ω Resistor"
+"DGreen",1,"Verde LED"
+"DRed",1,"Vermelho LED"
+"DBlue",1,"Azul LED"
+"DYellow",1,"Amarelo LED"
+"SRed, SGreen, SBlue, SYellow",4," Botão"
+"RRed, RGreen, RBlue, RYellow",4,"10 kΩ Resistor"
+"U3",1,"Baseado em MCP23008, 32 LCD 16 x 2 (I2C)"
+"PIEZO2",1," Piezo"
+"R1",1,"100 Ω Resistor"

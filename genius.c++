@@ -10,6 +10,8 @@
 #define blueButton    5
 #define yellowButton  4
 
+#define piezoBuzzer   2
+
 Adafruit_LiquidCrystal lcd_1(0);
 
 int machineColorOrder[10];
@@ -18,6 +20,8 @@ int playerColorOrder[10];
 const int ledColor[] = {redLed, greenLed, blueLed, yellowLed};
 
 const int buttonColor[] = {redButton, greenButton, blueButton, yellowButton};
+
+const int buzzerFrequency[] = {440, 494, 523, 587}; // A4 = 440 Hz, B4 = 494 Hz, C5 = 523 Hz, D5 = 587 Hz
 
 int color = 0;
 int gameLevel = 0;
@@ -36,6 +40,8 @@ void setup() {
   pinMode(buttonColor[1], INPUT); //Green Button In
   pinMode(buttonColor[2], INPUT); //Blue Button In
   pinMode(buttonColor[3], INPUT); //Yellow Button In
+
+  pinMode(piezoBuzzer, OUTPUT);   //Piezo Out
 }
 
 void loop() {
@@ -54,6 +60,10 @@ void ledTurnOff(int color) {
 
 int buttonPress(int color) {
   return digitalRead(buttonColor[color]);
+}
+
+void playTone(int frequency, int duration) {
+  tone(piezoBuzzer, buzzerFrequency[frequency], 100);
 }
 
 void shuffleMachineColorOrder() {
@@ -99,6 +109,7 @@ void nextLevel() {
 }
 
 void machineTurn(int i) {
+  playTone(i, 10);
   ledTurnOn(machineColorOrder[i]);
   delay(500);
   ledTurnOff(machineColorOrder[i]);
@@ -109,6 +120,7 @@ void playerTurn(int i) {
   while (1) {
     if (buttonPress(0) == HIGH) {
       ledTurnOn(0);
+      playTone(0, 100);
       delay(50);
       if(buttonPress(0) == LOW) {
         ledTurnOff(0);
@@ -119,6 +131,7 @@ void playerTurn(int i) {
 
     if (buttonPress(1) == HIGH) {
       ledTurnOn(1);
+      playTone(1, 100);
       delay(50);
       if(buttonPress(1) == LOW) {
         ledTurnOff(1);
@@ -129,6 +142,7 @@ void playerTurn(int i) {
       
     if (buttonPress(2) == HIGH) {
       ledTurnOn(2);
+      playTone(2, 100);
       delay(50);
       if(buttonPress(2) == LOW) {
         ledTurnOff(2);
@@ -139,6 +153,7 @@ void playerTurn(int i) {
       
     if (buttonPress(3) == HIGH) {
       ledTurnOn(3);
+      playTone(3, 100);
       delay(50);
       if(buttonPress(3) == LOW) {
         ledTurnOff(3);
